@@ -1,33 +1,54 @@
-# android_device_infinix_X6886
+# Infinix X6886
 
-Device tree for the Infinix X6886 (HOT 60 Pro+).
+Device tree for the Infinix X6886 (HOT 60 Pro+) on LineageOS 23.0 and InfinityX.
+The values here come from the stock XOS 16 dump for this device. The matching
+vendor tree holds the proprietary blobs.
 
-| Item | Value |
+## Device
+
+| | |
 | --- | --- |
-| Device | Infinix X6886 (HOT 60 Pro+) |
-| Platform | MediaTek MT6789 (arm64, 64-bit only) |
-| Stock build | XOS 16 / 155SP15, BP2A.250605.031.A3 |
-| SDK level | 36 (Android 16) |
-| Kernel | 6.12.38-android16-5 (GKI, prebuilt) |
-| Partitions | A/B, dynamic, system-as-root |
-| Fingerprint | `Infinix/X6886-OP/Infinix-X6886:16/BP2A.250605.031.A3/301400007:user/release-keys` |
+| Codename | x6886 |
+| Model | Infinix X6886 (HOT 60 Pro+) |
+| SoC | MediaTek MT6789 |
+| Stock firmware | XOS 16 / 155SP15 |
+| Build ID | BP2A.250605.031.A3 |
+| Android | 16 (SDK 36) |
+| Incremental | 301550078 |
 
-## Branch
+Fingerprint: `Infinix/X6886-OP/Infinix-X6886:16/BP2A.250605.031.A3/301550078:user/release-keys`
 
-`lineage-23.2`
+## Partitions
 
-## Source
+A/B slots with virtual A/B and dynamic partitions. Super is 13083561984 bytes.
+Its two groups, `main_a` and `main_b`, each cap at 13081464832 bytes.
 
-Everything is derived from the read-only stock dump at `/home/berucrypt00/otadump`.
+Boot uses header version 4 and 4096 byte pages, with an `lz4_legacy` kernel.
+`vendor_boot` carries the ramdisk and DTB and boots with
+`bootopt=64S3,32N2,64N2 bootconfig`.
 
-The kernel is used as a prebuilt (boot / vendor_boot images), not built here.
+## Building
 
-## Layout
+Put this tree at `device/infinix/x6886` and the proprietary tree at
+`vendor/infinix/x6886` in a LineageOS 23.0 source tree, then:
 
-To be populated.
+    source build/envsetup.sh
+    lunch lineage_X6886-userdebug
+    mka bacon
 
-## Rules
+`infinity_X6886-userdebug` is the InfinityX target when its vendor config is
+present.
 
-- The stock dump is read-only.
-- Device values come from the X6886 dump only.
-- One step at a time, each verified before the next starts.
+## Source split
+
+`system`, `system_ext` and `product` come from the donor ROM. `vendor`, `odm` and
+the `*_dlkm` partitions stay exactly as they are in the stock dump. Panel tuning
+sits in `odm/etc/vconfig/display/`.
+
+`vendorsetup.sh` applies the patches under `patches/` when you source the build
+environment. To pull them back out, run
+`vs_state=skip source build/envsetup.sh`.
+
+## License
+
+Apache-2.0 unless a file says otherwise.
