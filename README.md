@@ -1,8 +1,9 @@
 # Infinix X6886
 
-Device tree for the Infinix X6886 (HOT 60 Pro+) on LineageOS 23.0 and InfinityX.
-The values here come from the stock XOS 16 dump for this device. The matching
-vendor tree holds the proprietary blobs.
+Device tree for the Infinix X6886 (HOT 60 Pro+) on LineageOS 24.0 and InfinityX.
+It builds against the Android 17 tree, while every board value comes from the
+stock XOS 16 dump for this exact device. The matching vendor tree holds the
+proprietary blobs.
 
 ## Device
 
@@ -13,7 +14,7 @@ vendor tree holds the proprietary blobs.
 | SoC | MediaTek MT6789 |
 | Stock firmware | XOS 16 / 155SP15 |
 | Build ID | BP2A.250605.031.A3 |
-| Android | 16 (SDK 36) |
+| Stock Android | 16 (SDK 36) |
 | Incremental | 301550078 |
 
 Fingerprint: `Infinix/X6886-OP/Infinix-X6886:16/BP2A.250605.031.A3/301550078:user/release-keys`
@@ -30,7 +31,7 @@ Boot uses header version 4 and 4096 byte pages, with an `lz4_legacy` kernel.
 ## Building
 
 Put this tree at `device/infinix/x6886` and the proprietary tree at
-`vendor/infinix/x6886` in a LineageOS 23.0 source tree, then:
+`vendor/infinix/x6886` in a LineageOS 24.0 source tree, then:
 
     source build/envsetup.sh
     lunch lineage_X6886-userdebug

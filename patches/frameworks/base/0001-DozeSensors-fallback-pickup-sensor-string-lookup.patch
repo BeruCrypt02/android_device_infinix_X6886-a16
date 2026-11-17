@@ -1,5 +1,5 @@
 From 610f2021cf0f2d861e8a03f1d1ca121d64dc3e3c Mon Sep 17 00:00:00 2001
-From: ashallowperson <245951141+ashallowperson@users.noreply.github.com>
+From: Beru <BeruCrypt02@users.noreply.github.com>
 Date: Mon, 12 Oct 2026 00:11:38 +0500
 Subject: [PATCH] DozeSensors: fall back to string lookup for pickup sensor
 
