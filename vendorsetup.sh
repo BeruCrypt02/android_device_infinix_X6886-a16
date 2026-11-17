@@ -46,7 +46,7 @@
 #
 
 _device_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-_top="$(cd "$_device_dir/../../../.." && pwd)"
+_top="$(cd "$_device_dir/../../.." && pwd)"
 _patches_dir="$_device_dir/patches"
 
 _vs_state="${vs_state:-apply}"
@@ -69,6 +69,15 @@ _error() {
 _fatal() {
     printf '[X6886 vendorsetup] FATAL: %s\n' "$*" >&2
 }
+
+if [[ ! -f "$_top/build/envsetup.sh" ]]; then
+    _fatal "source root not found at $_top (expected build/envsetup.sh)"
+    if [[ "${BASH_SOURCE[0]}" != "${0}" ]]; then
+        return 1
+    else
+        exit 1
+    fi
+fi
 
 _has_local_git() {
     [[ -e "$1/.git" ]]
