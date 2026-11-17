@@ -1,0 +1,17 @@
+# build output
+out/
+*.img
+*.zip
+*.tar
+*.tar.md5
+
+# python helpers
+__pycache__/
+*.pyc
+
+# editors / os
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
