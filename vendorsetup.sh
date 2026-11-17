@@ -45,10 +45,6 @@
 # Device-tree fixes must not be repeated here.
 #
 
-# ---------------------------------------------------------------------------
-# Paths and configuration
-# ---------------------------------------------------------------------------
-
 _device_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 _top="$(cd "$_device_dir/../../../.." && pwd)"
 _patches_dir="$_device_dir/patches"
@@ -60,10 +56,6 @@ _applied_state="x6886-vendorsetup-applied"
 
 _failed=0
 _patch_files=()
-
-# ---------------------------------------------------------------------------
-# Logging
-# ---------------------------------------------------------------------------
 
 _log() {
     printf '[X6886 vendorsetup] %s\n' "$*"
@@ -77,10 +69,6 @@ _error() {
 _fatal() {
     printf '[X6886 vendorsetup] FATAL: %s\n' "$*" >&2
 }
-
-# ---------------------------------------------------------------------------
-# Git helpers
-# ---------------------------------------------------------------------------
 
 _has_local_git() {
     [[ -e "$1/.git" ]]
@@ -110,10 +98,6 @@ _is_owned_git() {
     git_dir="$(_git_dir "$target")" || return 1
     [[ -f "$git_dir/$_owned_marker" ]]
 }
-
-# ---------------------------------------------------------------------------
-# Temporary Git baseline for non-Git targets
-# ---------------------------------------------------------------------------
 
 _init_tracking() {
     local target="$1"
@@ -166,10 +150,6 @@ _init_tracking() {
     _log "baseline saved: ${target#"$_top"/}"
     return 0
 }
-
-# ---------------------------------------------------------------------------
-# Patch discovery
-# ---------------------------------------------------------------------------
 
 _discover_patches() {
     local allow_empty="${1:-0}"
@@ -230,10 +210,6 @@ _target_path() {
     printf '%s/%s\n' "$_top" "$(_target_rel "$1")"
 }
 
-# ---------------------------------------------------------------------------
-# Applied-state helpers (existing Git repositories)
-# ---------------------------------------------------------------------------
-
 _sha256() {
     sha256sum "$1" | awk '{print $1}'
 }
@@ -253,6 +229,14 @@ _state_has() {
 
     [[ -f "$state" ]] || return 1
     awk -F '\t' -v r="$rel" '$2 == r { found = 1 } END { exit !found }' "$state"
+}
+
+_state_hash() {
+    local state="$1"
+    local rel="$2"
+
+    [[ -f "$state" ]] || return 1
+    awk -F '\t' -v r="$rel" '$2 == r { print $1; exit }' "$state"
 }
 
 _state_drop() {
@@ -300,10 +284,6 @@ _record_applied() {
     return 0
 }
 
-# ---------------------------------------------------------------------------
-# Apply preconditions
-# ---------------------------------------------------------------------------
-
 _check_apply_preconditions() {
     local -A targets=()
     local patch
@@ -311,6 +291,8 @@ _check_apply_preconditions() {
     local target
     local state
     local status
+    local current
+    local recorded
 
     for patch in "${_patch_files[@]}"; do
         targets["$(_target_path "$patch")"]=1
@@ -333,10 +315,14 @@ _check_apply_preconditions() {
                 rel="${patch#"$_patches_dir"/}"
 
                 if _state_has "$state" "$rel"; then
-                    # Recorded patches are the only expected dirty state.
-                    if ! git -C "$target" apply --check --reverse "$patch" >/dev/null 2>&1; then
-                        _error "recorded patch is not applied cleanly: $rel"
-                        _log "source is inconsistent; run vs_state=skip or inspect: $target"
+                    # The applied-state file is authoritative. A later patch in
+                    # a stack can overlap this one, so its reverse check alone
+                    # is not reliable. Only reject an edited patch file.
+                    recorded="$(_state_hash "$state" "$rel")"
+                    current="$(_sha256 "$patch")"
+                    if [[ -z "$recorded" || "$current" != "$recorded" ]]; then
+                        _error "patch changed since apply: $rel"
+                        _log "run vs_state=skip before using an edited patch: $target"
                         return 1
                     fi
                     continue
@@ -391,10 +377,6 @@ _check_apply_preconditions() {
 
     return 0
 }
-
-# ---------------------------------------------------------------------------
-# Apply
-# ---------------------------------------------------------------------------
 
 _apply_one() {
     local patch="$1"
@@ -483,10 +465,6 @@ _apply_patches() {
     return 0
 }
 
-# ---------------------------------------------------------------------------
-# Revert: existing Git repository
-# ---------------------------------------------------------------------------
-
 _reverse_recorded() {
     local target="$1"
     local state
@@ -556,10 +534,6 @@ _reverse_recorded() {
     rm -f "$state"
     return 0
 }
-
-# ---------------------------------------------------------------------------
-# Revert: temporary Git baseline
-# ---------------------------------------------------------------------------
 
 _revert_temp() {
     local target="$1"
@@ -631,10 +605,6 @@ _revert_temp() {
     return 0
 }
 
-# ---------------------------------------------------------------------------
-# Revert entry point
-# ---------------------------------------------------------------------------
-
 _skip_patches() {
     local -A targets=()
     local patch
@@ -670,10 +640,6 @@ _skip_patches() {
     _log "selected patches reverted; source is back to the pre-patch state"
     return 0
 }
-
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 
 case "$_vs_state" in
     apply)
