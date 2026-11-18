@@ -76,9 +76,7 @@ PRODUCT_COPY_FILES += \
 # consumed by the MTK voice-volume path; this service supplies them.
 # The parser plugin forwards those parameters through the MTK AIDL adapter.
 PRODUCT_PACKAGES += \
-    X6886InCallService \
-    libaudiopolicymanagercustom \
-    libx6886_audio_param_parser
+    X6886InCallService
 
 # Audio Alsa
 PRODUCT_PACKAGES += \
@@ -130,7 +128,6 @@ PRODUCT_PACKAGES += \
 
 # Contexthub
 PRODUCT_PACKAGES += \
-    android.hardware.contexthub-service.tinysys \
     chre_atoms_log \
     chremetrics-cpp
 
@@ -199,9 +196,7 @@ PRODUCT_PACKAGES += \
     android.hardware.biometrics.common-V3-ndk \
     android.hardware.biometrics.common.thread \
     android.hardware.biometrics.fingerprint-V3-ndk \
-    android.hardware.biometrics.fingerprint-service.jiiov \
-    vendor.anc.fingerprint.extension-V1-ndk \
-    anc_hal
+    android.hardware.biometrics.fingerprint-service
 
 # GNS
 PRODUCT_PACKAGES += \
@@ -241,8 +236,8 @@ PRODUCT_PACKAGES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.x6886 \
-    android.hardware.health-service.example_recovery \
+    android.hardware.health-service.mediatek \
+    android.hardware.health-service.mediatek-recovery \
     android.hardware.health-V1-ndk \
     android.hardware.health-V4-ndk
 
@@ -263,7 +258,6 @@ $(call inherit-product, hardware/lineage/compat/frameworks/compat.mk)
 
 # Infrared
 PRODUCT_PACKAGES += \
-    android.hardware.ir-service.x6886 \
     android.hardware.ir-V1-ndk
 
 # Input
@@ -280,7 +274,7 @@ PRODUCT_COPY_FILES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.x6886 \
+    android.hardware.lights-service.transsion \
     android.hardware.light-V1-ndk \
     android.hardware.light-V2-ndk
 
@@ -619,7 +613,7 @@ PRODUCT_PACKAGES += \
 
 # Vibrator
 PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.x6886 \
+    android.hardware.vibrator-service.transsion \
     android.hardware.vibrator-V2-ndk \
     libvibratorutils
 
