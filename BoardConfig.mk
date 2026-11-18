@@ -1,8 +1,12 @@
 # SPDX-FileCopyrightText: The LineageOS Project
 # SPDX-License-Identifier: Apache-2.0
 
+# Device paths
 DEVICE_PATH := device/infinix/x6886
 CONFIGS_PATH := $(DEVICE_PATH)/configs
+
+# Shipping API level: X6886 launched on Android 15 (API 35)
+BOARD_SHIPPING_API_LEVEL := 35
 PREBUILTS_PATH := $(DEVICE_PATH)-prebuilts
 MODULES_PATH := $(PREBUILTS_PATH)/modules
 FIRMWARE_PATH := $(PREBUILTS_PATH)/firmware

@@ -86,7 +86,6 @@ PRODUCT_PACKAGES += \
     libtinyalsa
 
 # API levels
-BOARD_SHIPPING_API_LEVEL := 31
 PRODUCT_SHIPPING_API_LEVEL := 36
 
 # Bluetooth
