@@ -295,7 +295,6 @@ PRODUCT_PACKAGES += \
     android.media.audio.eraser.types-V1-ndk \
     android.media.soundtrigger.types-V1-ndk \
     android.media.soundtrigger.types-V3-ndk \
-    libaudio_aidl_conversion_common_ndk \
     libavservices_minijail \
     libcodec2 \
     libcodec2_aidl \
@@ -517,6 +516,7 @@ PRODUCT_PACKAGES += \
     init.mt6789.aosp.rc \
     init.mt6789.usb.rc \
     init.mtkgki.rc \
+    init.touch.rc \
     init.project.rc \
     init.sensor_2_0.rc \
     init_connectivity.rc \
@@ -634,19 +634,6 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/wifi_hal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/vendor_hals/wifi_hal.xml
-
-# Permissions provided by AOSP Soong modules
-PRODUCT_PACKAGES += \
-    android.hardware.hardware_keystore_V3.xml \
-    android.hardware.se.omapi.uicc.prebuilt.xml \
-    android.hardware.sensor.accelerometer.prebuilt.xml \
-    android.hardware.sensor.compass.prebuilt.xml \
-    android.hardware.sensor.gyroscope.prebuilt.xml \
-    android.hardware.sensor.light.prebuilt.xml \
-    android.hardware.sensor.proximity.prebuilt.xml \
-    android.hardware.sensor.stepcounter.prebuilt.xml \
-    android.hardware.sensor.stepdetector.prebuilt.xml \
-    features_com.android.virt.xml
 
 # Properties
 include $(LOCAL_PATH)/configs/properties/vendor_logtag.mk

@@ -34,7 +34,7 @@ if [ -f $cfg_file ]; then
         insmod_arg=${arg}
         PAGE_SIZE=$(getconf PAGE_SIZE)
         #sdd: modify add odm 20250508
-        for partition in system_dlkm vendor odm
+        for partition in system_dlkm vendor_dlkm odm_dlkm vendor odm
         do
           modules_dir_base="/${partition}/lib/modules"
           if [ $PAGE_SIZE -eq 16384 ]; then
