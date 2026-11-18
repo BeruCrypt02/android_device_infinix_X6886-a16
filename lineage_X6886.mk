@@ -15,10 +15,14 @@ PRODUCT_DEVICE := X6886
 PRODUCT_NAME := lineage_X6886
 PRODUCT_BRAND := Infinix
 PRODUCT_MODEL := Infinix X6886
-PRODUCT_MANUFACTURER := infinix
+PRODUCT_MANUFACTURER := Infinix
 
 PRODUCT_GMS_CLIENTID_BASE := android-transsion
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
+    DeviceName=Infinix-X6886 \
+    DeviceProduct=X6886-OP \
+    SystemName=X6886-OP \
     BuildDesc="sys_mssi_64_64only_cn_armv82-user 16 BP2A.250605.031.A3 185643 release-keys" \
+    BuildSystemDesc="sys_mssi_64_64only_cn_armv82-user 16 BP2A.250605.031.A3 185643 release-keys" \
     BuildFingerprint=Infinix/X6886-OP/Infinix-X6886:16/BP2A.250605.031.A3/301550078:user/release-keys
