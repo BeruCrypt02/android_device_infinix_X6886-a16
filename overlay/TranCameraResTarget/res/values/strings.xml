@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="aigc_gold_watermak_value">camon_40_pro</string>
+    <string name="aigc_gold_watermak_value">infinix_x6886</string>
     <string name="base_focal_value">23.33</string>
     <string name="bgservice_type">aidl</string>
-    <string name="brand_res">CAMON 40 Pro</string>
+    <string name="brand_res">Infinix X6886</string>
     <string name="brand_ui_overlay_str">infinix ui overlay</string>
     <string name="celebrity_food_hint">Try to improve the taste</string>
     <string name="celebrity_sunset_hint">Try enhancing the sunset effect</string>
