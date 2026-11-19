@@ -1,0 +1,190 @@
+From 32bd412433ef0d58c3484769d9789987407627fc Mon Sep 17 00:00:00 2001
+From: X6886 Compatibility Patches <x6886-vendorsetup@localhost>
+Date: Fri, 20 Nov 2026 00:00:00 +0000
+Subject: [PATCH] x6886: place MTK HIDL interfaces on vendor partition
+
+With system_ext_specific dropped the interfaces default to the system
+partition, while their Soong-generated prebuilts live on vendor. Mark the
+interfaces vendor: true explicitly so both sides match.
+
+---
+ 16 files changed, 16 insertions(+)
+
+diff --git a/interfaces/hardware/bluetooth/audio/2.1/Android.bp b/interfaces/hardware/bluetooth/audio/2.1/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.bluetooth.audio@2.1",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "types.hal",
+         "IBluetoothAudioPort.hal",
+diff --git a/interfaces/hardware/bluetooth/audio/2.2/Android.bp b/interfaces/hardware/bluetooth/audio/2.2/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.bluetooth.audio@2.2",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "types.hal",
+         "IBluetoothAudioProvider.hal",
+diff --git a/interfaces/hardware/imsa/1.0/Android.bp b/interfaces/hardware/imsa/1.0/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.imsa@1.0",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "IImsa.hal",
+         "IImsaIndication.hal",
+diff --git a/interfaces/hardware/lbs/1.0/Android.bp b/interfaces/hardware/lbs/1.0/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.lbs@1.0",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "ILbs.hal",
+         "ILbsCallback.hal",
+diff --git a/interfaces/hardware/log/1.0/Android.bp b/interfaces/hardware/log/1.0/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.log@1.0",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "ILog.hal",
+         "ILogCallback.hal",
+diff --git a/interfaces/hardware/mtkpower/1.0/Android.bp b/interfaces/hardware/mtkpower/1.0/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkpower@1.0",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "IMtkPerf.hal",
+         "IMtkPower.hal",
+diff --git a/interfaces/hardware/mtkpower/1.1/Android.bp b/interfaces/hardware/mtkpower/1.1/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkpower@1.1",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "IMtkPerf.hal",
+         "IMtkPower.hal",
+diff --git a/interfaces/hardware/mtkpower/1.2/Android.bp b/interfaces/hardware/mtkpower/1.2/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkpower@1.2",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "IMtkPerf.hal",
+         "IMtkPower.hal",
+diff --git a/interfaces/hardware/mtkradioex/2.0/Android.bp b/interfaces/hardware/mtkradioex/2.0/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkradioex@2.0",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "types.hal",
+         "IAssistRadioResponse.hal",
+diff --git a/interfaces/hardware/mtkradioex/2.1/Android.bp b/interfaces/hardware/mtkradioex/2.1/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkradioex@2.1",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "IImsRadioIndication.hal",
+         "IImsRadioResponse.hal",
+diff --git a/interfaces/hardware/mtkradioex/2.2/Android.bp b/interfaces/hardware/mtkradioex/2.2/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkradioex@2.2",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "IImsRadioIndication.hal",
+         "IImsRadioResponse.hal",
+diff --git a/interfaces/hardware/mtkradioex/2.3/Android.bp b/interfaces/hardware/mtkradioex/2.3/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkradioex@2.3",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "IImsRadioIndication.hal",
+         "IImsRadioResponse.hal",
+diff --git a/interfaces/hardware/mtkradioex/2.4/Android.bp b/interfaces/hardware/mtkradioex/2.4/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkradioex@2.4",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "types.hal",
+         "IMtkRadioEx.hal",
+diff --git a/interfaces/hardware/mtkradioex/2.5/Android.bp b/interfaces/hardware/mtkradioex/2.5/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkradioex@2.5",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "IMtkRadioEx.hal",
+         "IMtkRadioExResponse.hal",
+diff --git a/interfaces/hardware/mtkradioex/3.0/Android.bp b/interfaces/hardware/mtkradioex/3.0/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.mtkradioex@3.0",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "types.hal",
+         "IAssistRadioResponse.hal",
+diff --git a/interfaces/hardware/netdagent/1.0/Android.bp b/interfaces/hardware/netdagent/1.0/Android.bp
+--- 
++++ 
+@@ -5,6 +5,7 @@
+ hidl_interface {
+     name: "vendor.mediatek.hardware.netdagent@1.0",
+     root: "vendor.mediatek.hardware",
++    vendor: true,
+     srcs: [
+         "INetdagent.hal",
+     ],
+-- 
+2.43.0
