@@ -24,11 +24,11 @@ Place the trees at `device/infinix/x6886` and `vendor/infinix/x6886`, then:
 
 ```sh
 source build/envsetup.sh
-lunch lineage_X6886-userdebug
+lunch lineage_x6886-userdebug
 mka bacon
 ```
 
-`infinity_X6886-userdebug` works when its vendor config is present.
+Only the `lineage_x6886` product is shipped.
 
 ## Image sources
 
