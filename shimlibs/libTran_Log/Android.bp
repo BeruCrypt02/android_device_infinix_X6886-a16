@@ -1,0 +1,14 @@
+//
+// SPDX-FileCopyrightText: The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// Source-built shim for libTran_Log.so. Stock camera blobs import both
+// symbols below and carry a DT_NEEDED on libTran_Log.so, so the library must
+// exist with the same ABI; the bodies are no-ops because it is logging only.
+cc_library_shared {
+    name: "libTran_Log",
+    vendor: true,
+    compile_multilib: "64",
+    srcs: ["tran_log.cpp"],
+}

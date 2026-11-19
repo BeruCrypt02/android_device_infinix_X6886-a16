@@ -29,20 +29,20 @@ AB_OTA_PARTITIONS += \
     vbmeta_system \
     vbmeta_vendor
 
-# A/B (firmware)
-AB_OTA_PARTITIONS += \
-    dpm \
-    gz \
-    lk \
-    logo \
-    mcupm \
-    md1img \
-    pi_img \
-    scp \
-    spmfw \
-    sspm \
-    tee \
-    tkv
+# A/B (firmware) - disabled for bringup (do not flash lk/firmware partitions)
+#AB_OTA_PARTITIONS += \
+#    dpm \
+#    gz \
+#    lk \
+#    logo \
+#    mcupm \
+#    md1img \
+#    pi_img \
+#    scp \
+#    spmfw \
+#    sspm \
+#    tee \
+#    tkv
 
 # Architecture
 TARGET_ARCH := arm64
@@ -98,9 +98,6 @@ BOARD_PREBUILT_DTBOIMAGE := $(PREBUILTS_PATH)/dtbo.img
 BOARD_PREBUILT_DTBIMAGE_DIR := $(PREBUILTS_PATH)/dtb
 
 TARGET_NO_KERNEL_OVERRIDE := true
-LOCAL_KERNEL := $(PREBUILTS_PATH)/Image.lz4
-PRODUCT_COPY_FILES += \
-	$(LOCAL_KERNEL):kernel
 
 # vendor_ramdisk modules
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(strip $(shell cat $(MODULES_PATH)/ramdisk/modules.load))
@@ -161,21 +158,21 @@ $(foreach p, $(call to-upper, $(TREBLE_PARTITIONS)), \
     $(eval TARGET_COPY_OUT_$(p) := $(call to-lower, $(p))))
 endif
 
-# Partitions (firmware)
-BOARD_CUSTOMIMAGES_PARTITION_LIST := dpm gz lk logo mcupm md1img pi_img scp spmfw sspm tee tkv
+# Partitions (firmware) - disabled for bringup
+#BOARD_CUSTOMIMAGES_PARTITION_LIST := dpm gz lk logo mcupm md1img pi_img scp spmfw sspm tee tkv
 
-BOARD_DPM_IMAGE_LIST := $(FIRMWARE_PATH)/dpm.img
-BOARD_GZ_IMAGE_LIST := $(FIRMWARE_PATH)/gz.img
-BOARD_LK_IMAGE_LIST := $(FIRMWARE_PATH)/lk.img
-BOARD_LOGO_IMAGE_LIST := $(FIRMWARE_PATH)/logo.img
-BOARD_MCUPM_IMAGE_LIST := $(FIRMWARE_PATH)/mcupm.img
-BOARD_MD1IMG_IMAGE_LIST := $(FIRMWARE_PATH)/md1img.img
-BOARD_PI_IMG_IMAGE_LIST := $(FIRMWARE_PATH)/pi_img.img
-BOARD_SCP_IMAGE_LIST := $(FIRMWARE_PATH)/scp.img
-BOARD_SPMFW_IMAGE_LIST := $(FIRMWARE_PATH)/spmfw.img
-BOARD_SSPM_IMAGE_LIST := $(FIRMWARE_PATH)/sspm.img
-BOARD_TEE_IMAGE_LIST := $(FIRMWARE_PATH)/tee.img
-BOARD_TKV_IMAGE_LIST := $(FIRMWARE_PATH)/tkv.img
+#BOARD_DPM_IMAGE_LIST := $(FIRMWARE_PATH)/dpm.img
+#BOARD_GZ_IMAGE_LIST := $(FIRMWARE_PATH)/gz.img
+#BOARD_LK_IMAGE_LIST := $(FIRMWARE_PATH)/lk.img
+#BOARD_LOGO_IMAGE_LIST := $(FIRMWARE_PATH)/logo.img
+#BOARD_MCUPM_IMAGE_LIST := $(FIRMWARE_PATH)/mcupm.img
+#BOARD_MD1IMG_IMAGE_LIST := $(FIRMWARE_PATH)/md1img.img
+#BOARD_PI_IMG_IMAGE_LIST := $(FIRMWARE_PATH)/pi_img.img
+#BOARD_SCP_IMAGE_LIST := $(FIRMWARE_PATH)/scp.img
+#BOARD_SPMFW_IMAGE_LIST := $(FIRMWARE_PATH)/spmfw.img
+#BOARD_SSPM_IMAGE_LIST := $(FIRMWARE_PATH)/sspm.img
+#BOARD_TEE_IMAGE_LIST := $(FIRMWARE_PATH)/tee.img
+#BOARD_TKV_IMAGE_LIST := $(FIRMWARE_PATH)/tkv.img
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6789
@@ -244,9 +241,6 @@ BOARD_AVB_VENDOR_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 
 BOARD_AVB_ODM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
 BOARD_AVB_SYSTEM_DLKM_ADD_HASHTREE_FOOTER_ARGS += --hash_algorithm sha256
-
-# Verified Boot | Fenrir compatibility flag
-BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
 
 # Wi-Fi
 WIFI_DRIVER_FW_PATH_PARAM := "/dev/wmtWifi"

@@ -131,10 +131,6 @@ PRODUCT_PACKAGES += \
     chre_atoms_log \
     chremetrics-cpp
 
-# CPU
-PRODUCT_PACKAGES += \
-    libRSCpuRef
-
 # DeviceConfig
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/device-config-defaults:$(TARGET_COPY_OUT_SYSTEM)/etc/device-config-defaults
@@ -187,9 +183,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.fastboot-service.example_recovery \
     fastbootd
-
-# Fenrir compatibility flag
-$(call soong_config_set_bool,fastbootd,bypass_lock_state,true)
 
 # Fingerprint - Biometrics
 PRODUCT_PACKAGES += \
@@ -266,6 +259,8 @@ PRODUCT_PACKAGES += \
 
 # Kernel
 PRODUCT_ENABLE_UFFD_GC := true
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)-prebuilts/Image.lz4:kernel
 
 # Keylayout
 PRODUCT_COPY_FILES += \
@@ -324,10 +319,6 @@ PRODUCT_PACKAGES += \
     android.hardware.media.c2@1.0 \
     android.hardware.media.c2@1.1 \
     android.hardware.media.c2@1.2
-
-# Media - OMX
-PRODUCT_PACKAGES += \
-    android.hardware.media.omx@1.0
 
 # Memtrack
 PRODUCT_PACKAGES += \
@@ -491,10 +482,6 @@ PRODUCT_PACKAGES += \
 # RIL
 ENABLE_VENDOR_RIL_SERVICE := true
 
-# Renderscript
-PRODUCT_PACKAGES += \
-    android.hardware.renderscript@1.0
-
 # Rootdir
 PRODUCT_PACKAGES += \
     init.insmod.sh
@@ -515,7 +502,7 @@ PRODUCT_PACKAGES += \
     init.sensor_2_0.rc \
     init_connectivity.rc \
     init.recovery.mt6789.rc \
-    mtk_plpath_utils_x6886_recovery \
+    mtk_plpath_utils_x6886_recovery
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/etc/fstab.mt6789:$(TARGET_VENDOR_RAMDISK_OUT)/first_stage_ramdisk/fstab.mt6789
@@ -526,11 +513,6 @@ PRODUCT_COPY_FILES += \
 # Rootdir | use stock rc
 $(call soong_config_set_bool,mediatek_gadget,use_custom_usb_gadget_rc,true)
 
-# RS
-PRODUCT_PACKAGES += \
-    libRSDriver \
-    libRS_internal
-
 # Secure Element
 PRODUCT_PACKAGES += \
     android.hardware.secure_element-V1-ndk \
@@ -539,7 +521,6 @@ PRODUCT_PACKAGES += \
 # Shims
 PRODUCT_PACKAGES += \
     libaedv \
-    libtranlog \
     libTran_Log
 
 # Sensors
@@ -622,9 +603,7 @@ PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     hostapd \
     wpa_supplicant \
-    wlan_assistant \
-    libkeystore-engine-wifi-hidl \
-    libkeystore-wifi-hidl
+    wlan_assistant
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/wifi/wifi_hal.xml:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/vendor_hals/wifi_hal.xml
@@ -640,7 +619,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel/pixelstats \
     hardware/google/pixel/power-libperfmgr \
     hardware/google/pixel/thermal \
-    hardware/mediatek
+    hardware/mediatek \
+    hardware/transsion
 
 # Inherit the proprietary files
 $(call inherit-product, vendor/infinix/x6886/X6886-vendor.mk)

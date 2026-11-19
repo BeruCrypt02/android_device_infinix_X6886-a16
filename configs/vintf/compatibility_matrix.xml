@@ -10,7 +10,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="aidl">
+    <hal format="aidl" optional="true">
         <name>vendor.mediatek.framework.mtksf_ext</name>
         <version>2</version>
         <interface>
