@@ -340,8 +340,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.nfc-V1-ndk \
     android.hardware.nfc-V2-ndk \
-    android.hardware.nfc@1.0 \
-    vendor.nxp.nxpnfc_aidl-V1-ndk
+    android.hardware.nfc@1.0
 
 # Overlays
 PRODUCT_ENFORCE_RRO_TARGETS := *
@@ -365,8 +364,7 @@ PRODUCT_PACKAGES += \
     vendor.mediatek.hardware.mtkpower@1.2
 
 PRODUCT_PACKAGES += \
-    vendor.mediatek.hardware.mtkpower-V1-ndk \
-    vendor.mediatek.hardware.mtkpower-V2-ndk
+    vendor.mediatek.hardware.mtkpower-V1-ndk
 
 PRODUCT_PACKAGES += \
     android.hardware.power-service.pixel-libperfmgr
@@ -515,8 +513,7 @@ $(call soong_config_set_bool,mediatek_gadget,use_custom_usb_gadget_rc,true)
 
 # Secure Element
 PRODUCT_PACKAGES += \
-    android.hardware.secure_element-V1-ndk \
-    vendor.nxp.nxpese@1.0
+    android.hardware.secure_element-V1-ndk
 
 # Shims
 PRODUCT_PACKAGES += \

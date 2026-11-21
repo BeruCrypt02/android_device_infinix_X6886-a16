@@ -68,7 +68,6 @@ persist.vendor.vpnr.vpnrEnrollStatus            u:object_r:vendor_tran_vpnr_audi
 
 # TEE property
 vendor.tee.googlekey.status                          u:object_r:vendor_mtk_trustonic_tee_prop:s0
-vendor.service.nvram_first_restore   u:object_r:vendor_nvram_first_restore_prop:s0 exact
 persist.vendor.tr_nfc_chip_manufacturer  u:object_r:vendor_tran_nfc_chip_prop:s0 exact
 vendor.fp.transsion.display.module.name  u:object_r:vendor_transsion_fingerprint_prop:s0 exact
 

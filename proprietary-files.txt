@@ -3293,3 +3293,6 @@ odm/etc/init/fingerprint-default.rc
 odm/etc/init/vendor.goodix.rc
 odm/etc/vintf/manifest/fingerprint-default.xml
 odm/etc/permissions/android.hardware.fingerprint.xml
+odm/lib64/vendor.nxp.nxpese@1.0.so
+vendor/lib64/vendor.nxp.nxpnfc_aidl-V1-ndk.so
+vendor/lib64/vendor.mediatek.hardware.mtkpower-V2-ndk.so
